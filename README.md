@@ -4,26 +4,42 @@
 
 ## 🚀 快速开始
 
-### 从 GitHub 安装
+### 从 GitHub 安装（推荐）
 
 ```bash
-# 克隆仓库到 Claude Code skills 目录
-git clone https://github.com/YOUR_USERNAME/devflow-workflows.git ~/.claude/skills/devflow-workflows
+# 克隆仓库
+git clone https://github.com/UstinianDev/workflow-templates.git
+cd workflow-templates
 
-# 或者克隆到项目级 skills 目录
-git clone https://github.com/YOUR_USERNAME/devflow-workflows.git .claude/skills/devflow-workflows
+# 运行安装脚本
+chmod +x install.sh
+./install.sh
 ```
 
-### 从本地安装
+安装脚本会自动：
+- 检测 Claude Code 安装路径
+- 将工作流文件复制到 `~/.claude/skills/` 目录
+- 验证安装是否成功
 
-将整个 `Workflows` 目录复制到你的 Claude Code skills 目录：
+### 手动安装
+
+如果自动安装不成功，可以手动复制：
 
 ```bash
-# 复制到用户级 skills 目录（推荐）
-cp -r D:/Workflows ~/.claude/skills/devflow-workflows
+# 克隆仓库
+git clone https://github.com/UstinianDev/workflow-templates.git
+cd workflow-templates
 
-# 或者复制到项目级 skills 目录
-cp -r D:/Workflows .claude/skills/devflow-workflows
+# 复制到用户级 skills 目录
+cp -r devflow-core ~/.claude/skills/
+cp -r devflow-refactor ~/.claude/skills/
+cp -r grill-me ~/.claude/skills/
+cp -r grilling ~/.claude/skills/
+cp -r tdd-workflow ~/.claude/skills/
+cp -r code-refactor-master ~/.claude/skills/
+cp -r testing-quality-agent ~/.claude/skills/
+cp -r skill-comply ~/.claude/skills/
+cp -r agent-skill-creator ~/.claude/skills/
 ```
 
 ### 使用
