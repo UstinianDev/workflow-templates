@@ -1,6 +1,6 @@
 # DevFlow 工作流
 
-一套基于 Claude Code 的智能开发工作流系统，包含开发和重构两种工作流变体。
+一套基于 Claude Code 的智能开发工作流系统，包含开发、重构和文档管理三种工作流变体。
 
 ## 🚀 快速开始
 
@@ -33,6 +33,7 @@ cd workflow-templates
 # 复制到用户级 skills 目录
 cp -r devflow-core ~/.claude/skills/
 cp -r devflow-refactor ~/.claude/skills/
+cp -r devflow-documents ~/.claude/skills/
 cp -r grill-me ~/.claude/skills/
 cp -r grilling ~/.claude/skills/
 cp -r tdd-workflow ~/.claude/skills/
@@ -48,8 +49,9 @@ cp -r agent-skill-creator ~/.claude/skills/
 
 - `/devflow-core <需求描述>` — 启动开发工作流
 - `/devflow-refactor <重构目标>` — 启动重构工作流
+- `/devflow-documents` — 启动文档管理工作流
 
-**注意**：用户输入 `/` 时只会显示这两个工作流，其他依赖的 skills 不会显示。
+**注意**：用户输入 `/` 时只会显示这三个工作流，其他依赖的 skills 不会显示。
 
 ## 📋 工作流说明
 
@@ -79,6 +81,19 @@ cp -r agent-skill-creator ~/.claude/skills/
 7. **全量测试**：质量门禁检查
 8. **交付核对**：变更清单核对
 
+### devflow-documents（文档管理工作流）
+
+纯文档管理，不涉及代码实现：
+
+1. **快速扫描**：检查项目文档存在性和 devflow 产出
+2. **增量判断**：对每个文档先判断再动手，存在且合理则跳过
+3. **按需创建/更新**：
+   - README.md — 项目简介、技术栈、运行方式
+   - TODO.md — 功能进度、已知问题
+   - API.md — 接口文档（从代码自动提取）
+   - modules/ — 各模块文档
+4. **同步 CLAUDE.md**：更新项目级文档索引
+
 ## 🎯 规模分级
 
 | 规模 | 适用场景 | 流程裁剪 |
@@ -105,7 +120,11 @@ docs/
 ├── requirements/    # 需求文档
 ├── plan/           # 实施计划和状态
 ├── testing/        # TDD 证据报告
-└── refactor/       # 重构报告
+├── refactor/       # 重构报告
+├── modules/        # 各模块文档（devflow-documents 生成）
+├── README.md       # 项目文档索引（devflow-documents 生成）
+├── TODO.md         # 功能进度（devflow-documents 生成）
+└── API.md          # 接口文档（devflow-documents 生成）
 ```
 
 ## ⚙️ 配置要求

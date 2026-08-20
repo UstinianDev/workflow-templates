@@ -20,6 +20,7 @@ echo "✅ 找到安装目录: $INSTALL_DIR"
 REQUIRED_FILES=(
     "devflow-core/SKILL.md"
     "devflow-refactor/SKILL.md"
+    "devflow-documents/SKILL.md"
     "grill-me/SKILL.md"
     "grilling/SKILL.md"
     "tdd-workflow/SKILL.md"
@@ -44,7 +45,7 @@ done
 echo ""
 echo "🔧 检查工作流配置："
 
-for skill in devflow-core devflow-refactor; do
+for skill in devflow-core devflow-refactor devflow-documents; do
     if grep -q "user-invocable: true" "$INSTALL_DIR/$skill/SKILL.md" 2>/dev/null; then
         echo "  ✅ $skill - 用户可调用"
     else
@@ -80,3 +81,4 @@ echo ""
 echo "如果所有检查都通过，你可以在 Claude Code 中使用："
 echo "  /devflow-core <需求描述>"
 echo "  /devflow-refactor <重构目标>"
+echo "  /devflow-documents"
