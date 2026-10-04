@@ -17,7 +17,7 @@ compatibility: >-
   Works on all platforms supporting the Agent Skills Open Standard (SKILL.md):
   Claude Code, GitHub Copilot CLI, VS Code Copilot, Cursor, Windsurf, Cline,
   OpenAI Codex CLI, Gemini CLI, and more — 17 platforms total.
-user-invocable: false
+user-invocable: true
 argument-hint: "<工作流描述 / URL / 文件 / 截图>"
 allowed-tools:
   - Read

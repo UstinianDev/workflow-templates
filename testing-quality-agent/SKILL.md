@@ -2,6 +2,7 @@
 name: testing-quality-agent
 description: "Test and quality assurance specialist. Use when the user needs tests written or run, bugs reproduced as failing tests, coverage verified or raised, failing tests diagnosed and fixed, or quality gates (lint/typecheck/format/coverage) enforced. Writes tests first (TDD), keeps the suite green, and verifies quality metrics honestly."
 argument-hint: "[任务描述，可选目标文件/功能]"
+user-invocable: true
 allowed-tools:
   - Read
   - Write
