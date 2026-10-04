@@ -34,21 +34,35 @@ esac
 # 创建目标目录
 mkdir -p "$INSTALL_DIR"
 
-# 复制文件
+# 复制文件（只复制含 SKILL.md 的 skills 目录，排除构建产物）
 echo "📦 复制工作流文件..."
-cp -r "$SCRIPT_DIR"/* "$INSTALL_DIR/"
+for skill_dir in "$SCRIPT_DIR"/*/; do
+    skill_name="$(basename "$skill_dir")"
+    if [ -f "$skill_dir/SKILL.md" ]; then
+        rm -rf "$INSTALL_DIR/$skill_name"
+        cp -r "$skill_dir" "$INSTALL_DIR/$skill_name"
+        echo "  ✅ $skill_name"
+    fi
+done
 
-# 设置权限
-chmod +x "$INSTALL_DIR/install.sh" 2>/dev/null || true
+# 清理构建产物（不入库也不安装）
+find "$INSTALL_DIR" -type d -name "__pycache__" -prune -exec rm -rf {} + 2>/dev/null || true
+find "$INSTALL_DIR" -type f -name "*.pyc" -delete 2>/dev/null || true
 
+echo ""
 echo "✅ 安装完成！"
 echo ""
 echo "📋 使用方法："
 echo "  在 Claude Code 中输入："
-echo "    /devflow-core <需求描述>    - 启动开发工作流"
+echo "    /devflow <需求描述>          - 启动开发工作流"
 echo "    /devflow-refactor <重构目标> - 启动重构工作流"
-echo "    /devflow-documents         - 启动文档管理工作流"
+echo "    /devflow-documents           - 启动文档管理工作流"
+echo "    /devflow-perf <优化目标>     - 启动性能优化工作流"
+echo "    /devflow-video <需求> [模板] - 启动视频提示词生成工作流"
 echo ""
 echo "📁 安装位置: $INSTALL_DIR"
 echo ""
-echo "💡 提示：用户输入 / 时只会显示这三个工作流，其他依赖的 skills 不会显示。"
+echo "💡 提示："
+echo "  1. 用户输入 / 时只会显示上述 5 个工作流。"
+echo "  2. devflow-base 是公共骨架（disable-model-invocation），仅供工作流内部读取，不显示。"
+echo "  3. 其余依赖 skills（grill-me、tdd-workflow、docs-cli 等）由工作流自动调用。"
