@@ -7,7 +7,7 @@ user-invocable: true
 
 # /devflow-documents — 文档管理工作流（devflow 家族·文档变体）
 
-纯文档管理，不涉及代码实现，不引用 devflow-core。
+纯文档管理，不涉及代码实现，不引用 devflow-base。
 
 ## 执行流程
 
